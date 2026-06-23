@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bestdwell — Index</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#FFFFFF;            /* blanc pur */
+    --soft:#FAF8F4;            /* blanc cassé chaud (surfaces) */
+    --soft-2:#F2EFE9;
+    --ink:#181715;             /* quasi-noir net (texte) — fini le brun terne */
+    --mut:#6E6A62;             /* gris chaud neutre */
+    --mut-2:#A6A199;
+    --rule:#ECE9E3;            /* filet clair neutre-chaud */
+    --rule-2:#DEDAD2;
+    --accent:#181715;          /* MONOCHROME : données en noir, pop par le poids */
+    --accent-deep:#000000;
+    --accent-soft:#F1EEE8;
+    --disp:"Manrope",sans-serif; --body:"Manrope",sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:var(--body);font-weight:400;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;position:relative}
+  a{color:inherit;text-decoration:none}
+  img{display:block}
+  .accent{color:var(--accent)}
+  .tnum{font-variant-numeric:tabular-nums}
+  .ph{filter:sepia(.1) saturate(1.05) contrast(1.02)}
+
+  /* FOND EN RELIEF (repris de ScaleTrace, rien d'autre) */
+  .grid-bg{position:fixed;inset:0;z-index:0;pointer-events:none;
+    background-image:
+      linear-gradient(to right, rgba(40,28,16,.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(40,28,16,.05) 1px, transparent 1px);
+    background-size:54px 54px;
+    -webkit-mask-image:radial-gradient(125% 80% at 50% -4%, #000 0%, rgba(0,0,0,.35) 44%, transparent 74%);
+    mask-image:radial-gradient(125% 80% at 50% -4%, #000 0%, rgba(0,0,0,.35) 44%, transparent 74%)}
+
+  /* NAV FLOTTANTE */
+  nav{position:sticky;top:0;z-index:60;padding:18px 20px 0}
+  .nav-pill{max-width:1080px;margin:0 auto;background:rgba(255,255,255,.84);backdrop-filter:blur(16px);border:1px solid var(--rule);border-radius:100px;box-shadow:0 14px 40px -22px rgba(40,28,16,.28);display:flex;align-items:center;justify-content:space-between;padding:9px 9px 9px 24px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:-.02em}
+  .brand .bmk{width:25px;height:25px;background:var(--ink);border-radius:7px;display:grid;place-items:center}
+  .brand .bmk svg{width:13px;height:13px}
+  .nav-links{display:flex;gap:26px;font-weight:600;font-size:14px;color:var(--mut)}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-cta{display:flex;align-items:center;gap:14px}
+  .nav-cta .login{font-weight:600;font-size:14px;color:var(--ink)}
+  @media(max-width:920px){.nav-links{display:none}}
+
+  /* CADRE / séparations */
+  .frame{max-width:1240px;margin:0 auto;position:relative;z-index:1;border-left:1px solid var(--rule);border-right:1px solid var(--rule)}
+  .sec{position:relative;border-bottom:1px solid var(--rule);padding:0 44px}
+  .sec::before,.sec::after{content:"+";position:absolute;bottom:0;transform:translate(-50%,50%);font-weight:400;font-size:15px;line-height:1;color:var(--rule-2);z-index:2}
+  .sec::before{left:0}.sec::after{left:auto;right:0;transform:translate(50%,50%)}
+  @media(max-width:760px){.sec{padding:0 22px}}
+
+  .ey{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+  .ey::before{content:"";width:18px;height:1px;background:var(--accent);opacity:.5}
+
+  /* BOUTONS (Hombox) */
+  .btn{font-family:var(--body);font-weight:700;font-size:14px;border-radius:100px;padding:11px 22px;border:1px solid var(--rule-2);background:var(--paper);color:var(--ink);display:inline-flex;align-items:center;gap:13px;cursor:pointer;transition:.2s cubic-bezier(.2,.7,.2,1);white-space:nowrap}
+  .btn:has(.ic){padding-right:8px}
+  .btn:hover{border-color:var(--ink)}
+  .btn .ic{width:27px;height:27px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;flex:none;transition:.22s cubic-bezier(.2,.7,.2,1)}
+  .btn .ic svg{width:13px;height:13px}
+  .btn:hover .ic{transform:translate(2px,-2px)}
+  .btn.solid{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .btn.solid:hover{background:#0E0A06}
+  .btn.solid .ic{background:#fff;color:var(--ink)}
+  .btn.sm{font-size:13px;padding:9px 18px}
+  .btn.lg{font-size:15px;padding:13px 26px}
+  .btn.lg:has(.ic){padding-right:9px}
+  .btn.lg .ic{width:31px;height:31px}.btn.lg .ic svg{width:14px;height:14px}
+  .arrow{stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+  /* HERO */
+  .hero{text-align:center;padding:64px 44px 66px;position:relative;isolation:isolate}
+  .hero-relief{position:absolute;z-index:-1;left:50%;top:-70px;width:1500px;max-width:185%;height:540px;pointer-events:none;
+    transform:translateX(-50%) perspective(620px) rotateX(57deg);transform-origin:50% 0;
+    background-image:
+      linear-gradient(to right, rgba(40,28,16,.11) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(40,28,16,.11) 1px, transparent 1px);
+    background-size:50px 50px;
+    -webkit-mask-image:radial-gradient(54% 74% at 50% 2%, #000 0%, rgba(0,0,0,.5) 38%, transparent 75%);
+    mask-image:radial-gradient(54% 74% at 50% 2%, #000 0%, rgba(0,0,0,.5) 38%, transparent 75%)}
+  .badge{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:12px;color:var(--mut);background:var(--paper);border:1px solid var(--rule-2);border-radius:100px;padding:7px 15px;margin-bottom:30px}
+  .badge .dt{width:7px;height:7px;border-radius:50%;background:var(--accent)}
+  h1{font-weight:800;font-size:clamp(44px,7.2vw,90px);line-height:.98;letter-spacing:-.04em;max-width:14ch;margin:0 auto;color:var(--ink)}
+  h1 em{font-style:normal;color:var(--accent)}
+  .sub{color:var(--mut);font-size:18px;font-weight:500;max-width:53ch;margin:26px auto 0;line-height:1.55}
+  .hero-actions{margin-top:34px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .micro{margin-top:20px;font-weight:600;font-size:12px;color:var(--mut-2);text-transform:uppercase;letter-spacing:.06em}
+
+  .showcase{position:relative;margin:54px auto 0;max-width:1060px}
+  .sc-photo{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:16/9;box-shadow:0 50px 90px -55px rgba(40,30,15,.4);border:1px solid var(--rule)}
+  .sc-photo img{width:100%;height:100%;object-fit:cover}
+  .sc-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,rgba(16,12,6,.42) 0%,rgba(16,12,6,.05) 45%,transparent 70%)}
+  .sc-tl{position:absolute;left:24px;top:22px;z-index:2;font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#fff;display:flex;align-items:center;gap:8px}
+  .sc-tl .d{width:7px;height:7px;border-radius:50%;background:#fff}
+  .sc-info{position:absolute;left:24px;bottom:24px;z-index:2;color:#fff;text-shadow:0 2px 24px rgba(0,0,0,.4)}
+  .sc-info .t{font-weight:800;font-size:clamp(22px,3vw,32px);letter-spacing:-.02em}
+  .sc-info .s{font-weight:600;font-size:13px;margin-top:5px;opacity:.92}
+  .sc-card{position:absolute;right:24px;bottom:24px;z-index:3;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border:1px solid var(--rule);border-radius:14px;padding:18px 22px;min-width:212px;box-shadow:0 30px 60px -30px rgba(40,30,15,.45)}
+  .sc-card .k{font-weight:700;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
+  .sc-card .v{font-weight:800;font-size:46px;letter-spacing:-.04em;color:var(--accent);line-height:1;margin-top:8px}
+  .sc-card .row{display:flex;justify-content:space-between;gap:18px;margin-top:14px;padding-top:13px;border-top:1px solid var(--rule)}
+  .sc-card .row .l{font-weight:600;font-size:12.5px;color:var(--mut)}
+  .sc-card .row .n{font-weight:800;font-size:13.5px;color:var(--ink)}
+  @media(max-width:680px){.sc-card{display:none}.sc-photo{aspect-ratio:4/5}}
+
+  /* PROOF */
+  .proof{padding:40px 44px}
+  .proof-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+  .proof-grid > div{text-align:center;padding:6px 12px;border-left:1px solid var(--rule)}
+  .proof-grid > div:first-child{border-left:none}
+  @media(max-width:700px){.proof-grid{grid-template-columns:1fr 1fr;gap:26px 0}.proof-grid>div:nth-child(3){border-left:none}}
+  .proof .v{font-weight:800;font-size:38px;letter-spacing:-.03em}
+  .proof .v.acc{color:var(--accent)}
+  .proof .l{font-weight:600;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);margin-top:8px}
+
+  /* SECTION blocks */
+  .block{padding:88px 44px}
+
+  /* ===== PRÉSENTATION DES BIENS — style Rently (luxe) ===== */
+  .r-head{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:end;position:relative;padding-top:6px;margin-bottom:44px}
+  @media(max-width:760px){.r-head{grid-template-columns:1fr;gap:18px}}
+  .r-head .rl .ey2{font-weight:600;font-size:13px;color:var(--mut);margin-bottom:14px}
+  .r-head .rl h2{font-weight:800;font-size:clamp(30px,4.4vw,50px);letter-spacing:-.04em;line-height:1.0}
+  .r-head .rr{padding-bottom:6px}
+  .r-head .rr p{color:var(--mut);font-size:15.5px;font-weight:500;line-height:1.5;max-width:44ch}
+  .r-head .rr p b{color:var(--ink);font-weight:700}
+  .r-iconbtn{position:absolute;top:0;right:0;width:42px;height:42px;border-radius:10px;background:var(--ink);color:#fff;display:grid;place-items:center}
+  .r-iconbtn svg{width:16px;height:16px;stroke:#fff;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  @media(max-width:760px){.r-iconbtn{display:none}}
+
+  .r-feat{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+  @media(max-width:760px){.r-feat{grid-template-columns:1fr;gap:44px}}
+  .r-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
+  @media(max-width:1000px){.r-grid{grid-template-columns:1fr 1fr;gap:40px 26px}}
+  @media(max-width:560px){.r-grid{grid-template-columns:1fr}}
+
+  .r-card .pic{position:relative;border-radius:8px;overflow:hidden;aspect-ratio:16/11;background:var(--soft);border:1px solid var(--rule)}
+  .r-feat .r-card .pic{aspect-ratio:7/5}
+  .r-card .pic img{width:100%;height:100%;object-fit:cover;transition:.7s cubic-bezier(.2,.7,.2,1)}
+  .r-card:hover .pic img{transform:scale(1.035)}
+  .r-mrow{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:18px;padding-bottom:14px;border-bottom:1px solid var(--rule)}
+  .r-mrow .loc{display:inline-flex;align-items:center;gap:6px;font-weight:600;font-size:13px;color:var(--ink)}
+  .r-mrow .loc svg{width:14px;height:14px;color:var(--mut);stroke:currentColor;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .r-mrow .type{font-size:12.5px;color:var(--mut)}
+  .r-mrow .type b{color:var(--ink);font-weight:700}
+  .r-name{font-weight:800;font-size:21px;letter-spacing:-.02em;margin-top:15px}
+  .r-feat .r-name{font-size:25px}
+  .r-price{font-weight:800;font-size:16px;margin-top:7px}
+  .r-price span{font-weight:500;font-size:12.5px;color:var(--mut)}
+  .r-specs{margin-top:17px;display:flex;flex-direction:column;gap:11px}
+  .r-spec{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:13.5px;color:var(--mut)}
+  .r-spec svg{width:16px;height:16px;color:var(--mut-2);stroke:currentColor;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round;flex:none}
+  .r-spec.acc{color:var(--ink);font-weight:700}.r-spec.acc svg{color:var(--ink)}
+  .r-desc{margin-top:17px;font-size:13.5px;color:var(--mut);line-height:1.55}
+  .r-desc em{font-style:italic;color:var(--ink);font-weight:600}
+  .r-link{margin-top:17px;display:inline-flex;align-items:center;gap:7px;font-weight:700;font-size:13.5px;color:var(--ink);transition:.2s}
+  .r-link svg{width:15px;height:15px;stroke:currentColor;stroke-width:1.9;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .r-link:hover{gap:11px;color:var(--accent)}
+  .r-explore{display:flex;align-items:center;gap:22px;margin-top:54px}
+  .r-explore .lbl{font-weight:700;font-size:14px;white-space:nowrap}
+  .r-explore .ln{flex:1;height:1px;background:var(--rule-2)}
+  .r-explore .rnd{width:36px;height:36px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;flex:none;transition:.2s}
+  .r-explore .rnd:hover{transform:scale(1.08)}
+  .r-explore .rnd svg{width:15px;height:15px;stroke:#fff;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+  /* PRODUCT / dashboard */
+  .shead{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:44px;flex-wrap:wrap}
+  .shead .lft{max-width:640px}
+  .shead h2{font-weight:800;font-size:clamp(30px,4.4vw,50px);letter-spacing:-.035em;line-height:1.04;margin-top:16px}
+  .shead h2 em{font-style:normal;color:var(--accent)}
+  .shead p{color:var(--mut);margin-top:14px;font-size:16px;font-weight:500}
+  .product{background:var(--soft)}
+  .mock{margin:0 auto;max-width:1000px;background:var(--paper);border:1px solid var(--rule-2);border-radius:14px;box-shadow:0 50px 90px -55px rgba(40,30,15,.3);overflow:hidden}
+  .mock-bar{display:flex;align-items:center;gap:12px;padding:13px 16px;border-bottom:1px solid var(--rule);background:var(--paper)}
+  .mock-bar .bmk{width:22px;height:22px;background:var(--ink);border-radius:6px;display:grid;place-items:center}
+  .mock-bar .bmk svg{width:11px;height:11px}
+  .seg{display:flex;gap:4px;background:var(--soft);border-radius:8px;padding:3px}
+  .seg b{font-weight:600;font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;padding:5px 12px;border-radius:6px;color:var(--mut)}
+  .seg b.on{background:var(--paper);color:var(--ink);box-shadow:0 1px 3px rgba(40,30,15,.12)}
+  .mock-bar .spacer{flex:1}
+  .mock-bar .find{font-weight:600;font-size:11.5px;color:var(--mut-2);display:flex;align-items:center;gap:7px;border:1px solid var(--rule);border-radius:8px;padding:6px 11px;background:var(--paper)}
+  .fchips{display:flex;flex-wrap:wrap;gap:8px;padding:16px 16px 4px}
+  .fchip{font-weight:600;font-size:11.5px;color:var(--mut);background:var(--paper);border:1px solid var(--rule);border-radius:100px;padding:6px 12px}
+  .fchip.on{background:var(--accent-soft);color:var(--accent-deep);border-color:transparent}
+  .mock-body{padding:16px}
+  .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px}
+  @media(max-width:680px){.kpis{grid-template-columns:1fr}}
+  .kpi{border:1px solid var(--rule);border-radius:10px;padding:16px 18px;background:var(--soft)}
+  .kpi .k{font-weight:700;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+  .kpi .v{font-weight:800;font-size:30px;letter-spacing:-.03em;margin-top:9px;line-height:1}
+  .kpi .v.acc{color:var(--accent)}
+  .kpi .chg{font-weight:700;font-size:11.5px;color:var(--accent);margin-top:8px}
+  .rows{border:1px solid var(--rule);border-radius:10px;overflow:hidden}
+  .rh,.r{display:grid;grid-template-columns:2.4fr 1fr 1fr 1.1fr;align-items:center;gap:10px;padding:13px 18px}
+  .rh{background:var(--soft);border-bottom:1px solid var(--rule)}
+  .rh span{font-weight:700;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut-2)}
+  .rh span.r3,.r .c3,.rh span.r4,.r .c4{text-align:right}
+  .r{border-bottom:1px solid var(--rule);transition:background .15s;background:var(--paper)}
+  .r:last-child{border-bottom:none}
+  .r:hover{background:var(--soft)}
+  .r .city{display:flex;align-items:center;gap:11px}
+  .r .city .th{width:40px;height:32px;border-radius:6px;background-size:cover;background-position:center}
+  .r .city b{font-weight:700;font-size:14.5px}
+  .r .city small{display:block;color:var(--mut);font-size:12px;font-weight:500}
+  .r .c2{font-weight:600;font-size:13.5px;color:var(--mut);font-variant-numeric:tabular-nums}
+  .r .c3{font-weight:600;font-size:13.5px;color:var(--ink);font-variant-numeric:tabular-nums}
+  .r .c4{font-weight:800;font-size:15px;color:var(--accent);font-variant-numeric:tabular-nums}
+
+  /* METHOD */
+  .feats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--rule);border-radius:12px;overflow:hidden}
+  @media(max-width:820px){.feats{grid-template-columns:1fr}}
+  .feat{background:var(--paper);padding:32px 30px 36px;border-left:1px solid var(--rule)}
+  .feat:first-child{border-left:none}
+  @media(max-width:820px){.feat{border-left:none;border-top:1px solid var(--rule)}.feat:first-child{border-top:none}}
+  .feat .fn{font-weight:800;font-size:12px;color:var(--accent);letter-spacing:.04em}
+  .feat h3{font-weight:800;font-size:21px;letter-spacing:-.02em;margin:16px 0 10px}
+  .feat p{color:var(--mut);font-size:14.5px;font-weight:500}
+
+  /* STATEMENT */
+  .statement{padding:100px 44px;text-align:center}
+  .statement p{font-weight:800;font-size:clamp(28px,4.6vw,56px);line-height:1.08;letter-spacing:-.035em;max-width:20ch;margin:0 auto}
+  .statement p em{font-style:normal;color:var(--accent)}
+
+  /* CTA */
+  .cta{padding:64px 44px 80px}
+  .cta-in{position:relative;border-radius:18px;overflow:hidden;padding:84px 40px;text-align:center;color:#fff}
+  .cta-in img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+  .cta-in::after{content:"";position:absolute;inset:0;background:linear-gradient(160deg,rgba(18,17,15,.92),rgba(44,41,36,.74));z-index:1}
+  .cta-in .ct{position:relative;z-index:2}
+  .cta-in h2{font-weight:800;font-size:clamp(30px,5vw,58px);letter-spacing:-.035em;line-height:1.02;max-width:18ch;margin:0 auto}
+  .cta-in h2 em{font-style:normal;color:#FFFFFF}
+  .cta-in p{font-weight:600;font-size:12.5px;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.82);margin:18px auto 30px}
+  .cta-in .btn.solid{background:#fff;color:var(--ink);border-color:#fff}
+  .cta-in .btn.solid .ic{background:var(--ink);color:#fff}
+
+  footer{border-top:1px solid var(--rule);padding:34px 44px;max-width:1240px;margin:0 auto}
+  .foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--mut)}
+</style>
+</head>
+<body>
+<div class="grid-bg"></div>
+
+<nav>
+  <div class="nav-pill">
+    <a class="brand" href="#"><span class="bmk"><svg viewBox="0 0 24 24" fill="none"><path d="m15 8-3 4-5 4 3-4 5-4Z" fill="#fff"/></svg></span>Bestdwell</a>
+    <div class="nav-links">
+      <a href="#biens">La sélection</a><a href="#produit">Le produit</a><a href="#regions">Les biens</a><a href="#methode">Méthode</a><a href="#">Tarifs</a>
+    </div>
+    <div class="nav-cta">
+      <a class="login" href="#">Connexion</a>
+      <a class="btn solid sm" href="#">Commencer</a>
+    </div>
+  </div>
+</nav>
+
+<div class="frame">
+
+  <section class="sec hero">
+    <div class="hero-relief" aria-hidden="true"></div>
+    <span class="badge"><span class="dt"></span> 14 280 biens analysés aujourd'hui</span>
+    <h1>Les biens les plus <em>rentables</em> de France.</h1>
+    <p class="sub">Bestdwell parcourt le marché immobilier français en continu et révèle, données à l'appui, les rares biens dont le rendement tient vraiment ses promesses.</p>
+    <div class="hero-actions">
+      <a class="btn solid lg" href="#biens">Voir la sélection <span class="ic"><svg class="arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M10 7h7v7"/></svg></span></a>
+      <a class="btn lg" href="#methode">Comment ça marche</a>
+    </div>
+    <div class="micro">Sans carte bancaire · 14 jours d'essai · données rafraîchies chaque heure</div>
+
+    <div class="showcase">
+      <div class="sc-photo">
+        <img class="ph" src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1800&q=80" alt="Bien sélectionné" />
+        <div class="sc-tl"><span class="d"></span> Bien du jour · sélection vérifiée</div>
+        <div class="sc-info">
+          <div class="t">Maison de ville — Angers</div>
+          <div class="s">4 lots · 178 m² · 268 000 €</div>
+        </div>
+        <div class="sc-card">
+          <div class="k">Rendement net</div>
+          <div class="v tnum">10,4 %</div>
+          <div class="row"><span class="l">Cashflow</span><span class="n tnum">+ 580 €/m</span></div>
+          <div class="row" style="margin-top:8px;padding-top:8px"><span class="l">Loyer estimé</span><span class="n tnum">2 320 €</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec proof">
+    <div class="proof-grid">
+      <div><div class="v tnum">14 280</div><div class="l">biens / jour</div></div>
+      <div><div class="v acc tnum">7,9 %</div><div class="l">rendement médian</div></div>
+      <div><div class="v tnum">96</div><div class="l">départements</div></div>
+      <div><div class="v tnum">&lt; 1 h</div><div class="l">fraîcheur donnée</div></div>
+    </div>
+  </section>
+
+  <!-- ===== SÉLECTION — Rently featured 2 colonnes ===== -->
+  <section class="sec block" id="biens">
+    <div class="r-head">
+      <div class="rl">
+        <div class="ey2">La sélection</div>
+        <h2>Des biens qui valent<br>le détour.</h2>
+      </div>
+      <div class="rr"><p><b>Le meilleur rendement de France,</b> dans des biens qu'on a vraiment envie de visiter — pas seulement de rentabiliser.</p></div>
+      <a class="r-iconbtn" href="#regions"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M10 7h7v7"/></svg></a>
+    </div>
+    <div class="r-feat">
+
+      <article class="r-card">
+        <div class="pic"><img class="ph" src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80" alt="" /></div>
+        <div class="r-mrow">
+          <span class="loc"><svg viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-10.5a6.5 6.5 0 0 1 13 0C18.5 15.4 12 21 12 21Z"/><circle cx="12" cy="10.5" r="2.4"/></svg> Saint-Étienne, Loire</span>
+          <span class="type">Type : <b>Immeuble</b></span>
+        </div>
+        <div class="r-name">Immeuble de rapport</div>
+        <div class="r-price">312 000 € <span>· 1 459 €/m²</span></div>
+        <div class="r-specs">
+          <span class="r-spec"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zM4 9h5V4M15 20v-5h5"/></svg> 214 m²</span>
+          <span class="r-spec"><svg viewBox="0 0 24 24"><path d="M4 21V6a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v15M14 11h5a1 1 0 0 1 1 1v9M7 9h3M7 13h3M7 17h3"/></svg> 6 lots · entièrement loué</span>
+          <span class="r-spec acc"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M16 7h5v5"/></svg> Rendement net 11,2 %</span>
+          <span class="r-spec acc"><svg viewBox="0 0 24 24"><path d="M18 6.5A6 6 0 1 0 18 17.5M4 10.5h8M4 13.5h7"/></svg> Cashflow + 640 €/mois</span>
+        </div>
+        <div class="r-desc">À Saint-Étienne, cet <em>immeuble entièrement loué</em> conjugue charme ancien et rendement rare.</div>
+      </article>
+
+      <article class="r-card">
+        <div class="pic"><img class="ph" src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1200&q=80" alt="" /></div>
+        <div class="r-mrow">
+          <span class="loc"><svg viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-10.5a6.5 6.5 0 0 1 13 0C18.5 15.4 12 21 12 21Z"/><circle cx="12" cy="10.5" r="2.4"/></svg> Mulhouse, Haut-Rhin</span>
+          <span class="type">Type : <b>Appartement</b></span>
+        </div>
+        <div class="r-name">T3 meublé rénové</div>
+        <div class="r-price">128 500 € <span>· 2 008 €/m²</span></div>
+        <div class="r-specs">
+          <span class="r-spec"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zM4 9h5V4M15 20v-5h5"/></svg> 64 m²</span>
+          <span class="r-spec"><svg viewBox="0 0 24 24"><path d="M3 18v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4M3 18v2M21 18v2M3 14V8M7 12V9a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v3"/></svg> 3 pièces · meublé</span>
+          <span class="r-spec acc"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M16 7h5v5"/></svg> Rendement net 9,4 %</span>
+          <span class="r-spec acc"><svg viewBox="0 0 24 24"><path d="M18 6.5A6 6 0 1 0 18 17.5M4 10.5h8M4 13.5h7"/></svg> Cashflow + 295 €/mois</span>
+        </div>
+        <div class="r-desc">En plein centre, ce <em>T3 entièrement rénové</em> vise une clientèle d'actifs et ne reste jamais vacant.</div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ===== PRODUIT — dashboard ===== -->
+  <section class="sec block product" id="produit">
+    <div class="shead">
+      <div class="lft">
+        <div class="ey">Le produit</div>
+        <h2>Un classement vivant, <em>filtrable</em>, à jour chaque heure.</h2>
+        <p>Ville, type, rendement minimum, cashflow : affinez et laissez Bestdwell faire remonter ce qui compte.</p>
+      </div>
+      <a class="btn" href="#">Ouvrir l'app <span class="ic"><svg class="arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M10 7h7v7"/></svg></span></a>
+    </div>
+    <div class="mock">
+      <div class="mock-bar">
+        <span class="bmk"><svg viewBox="0 0 24 24" fill="none"><path d="m15 8-3 4-5 4 3-4 5-4Z" fill="#fff"/></svg></span>
+        <div class="seg"><b class="on">Classement</b><b>Carte</b><b>Alertes</b></div>
+        <span class="spacer"></span>
+        <span class="find"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#A79C87" stroke-width="2"/><path d="m20 20-3-3" stroke="#A79C87" stroke-width="2" stroke-linecap="round"/></svg> Rechercher une ville, un type…</span>
+      </div>
+      <div class="fchips">
+        <span class="fchip on">Toute la France</span><span class="fchip">Immeuble</span><span class="fchip on">Rendement ≥ 7%</span><span class="fchip">Cashflow +</span><span class="fchip">Meublé</span><span class="fchip">Prix &lt; 300k</span>
+      </div>
+      <div class="mock-body">
+        <div class="kpis">
+          <div class="kpi"><div class="k">Rendement médian</div><div class="v acc tnum">7,9 %</div><div class="chg">↑ 0,3 pt vs. mois dernier</div></div>
+          <div class="kpi"><div class="k">Biens / jour</div><div class="v tnum">14 280</div><div class="chg">↑ 1 240 cette semaine</div></div>
+          <div class="kpi"><div class="k">Cashflow+ détectés</div><div class="v tnum">3 416</div><div class="chg">↑ 8,1 % sur 30 jours</div></div>
+        </div>
+        <div class="rows">
+          <div class="rh"><span>Bien</span><span>Prix</span><span class="r3">Cashflow</span><span class="r4">Rendement</span></div>
+          <div class="r">
+            <div class="city"><span class="th ph" style="background-image:url('https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=200&q=70')"></span><span><b>Saint-Étienne</b><small>Immeuble · 6 lots</small></span></div>
+            <div class="c2">312 000 €</div><div class="c3">+ 640 €</div><div class="c4">11,2 %</div>
+          </div>
+          <div class="r">
+            <div class="city"><span class="th ph" style="background-image:url('https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=200&q=70')"></span><span><b>Mulhouse</b><small>T3 meublé · 64 m²</small></span></div>
+            <div class="c2">128 500 €</div><div class="c3">+ 295 €</div><div class="c4">9,4 %</div>
+          </div>
+          <div class="r">
+            <div class="city"><span class="th ph" style="background-image:url('https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=200&q=70')"></span><span><b>Limoges</b><small>Immeuble · 4 lots</small></span></div>
+            <div class="c2">196 000 €</div><div class="c3">+ 410 €</div><div class="c4">8,9 %</div>
+          </div>
+          <div class="r">
+            <div class="city"><span class="th ph" style="background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=200&q=70')"></span><span><b>Le Havre</b><small>Studio · 22 m²</small></span></div>
+            <div class="c2">86 000 €</div><div class="c3">+ 180 €</div><div class="c4">8,7 %</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LES BIENS — Rently grille 4 colonnes ===== -->
+  <section class="sec block" id="regions">
+    <div class="r-head">
+      <div class="rl">
+        <div class="ey2">Partout en France</div>
+        <h2>Le charme,<br>le rendement.</h2>
+      </div>
+      <div class="rr"><p><b>Des villes moyennes aux métropoles :</b> les meilleures opportunités, photographiées comme elles le méritent.</p></div>
+      <a class="r-iconbtn" href="#"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M10 7h7v7"/></svg></a>
+    </div>
+    <div class="r-grid">
+
+      <article class="r-card">
+        <div class="pic"><img class="ph" src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=900&q=80" alt="" /></div>
+        <div class="r-mrow"><span class="loc"><svg viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-10.5a6.5 6.5 0 0 1 13 0C18.5 15.4 12 21 12 21Z"/><circle cx="12" cy="10.5" r="2.4"/></svg> Le Havre</span><span class="type">Type : <b>Studio</b></span></div>
+        <div class="r-name">Studio meublé</div>
+        <div class="r-price">86 000 € <span>· 3 909 €/m²</span></div>
+        <div class="r-specs">
+          <span class="r-spec"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zM4 9h5V4M15 20v-5h5"/></svg> 22 m²</span>
+          <span class="r-spec acc"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M16 7h5v5"/></svg> Rendement 8,7 %</span>
+          <span class="r-spec acc"><svg viewBox="0 0 24 24"><path d="M18 6.5A6 6 0 1 0 18 17.5M4 10.5h8M4 13.5h7"/></svg> + 180 €/mois</span>
+        </div>
+        <div class="r-desc">Proche du port, ce <em>studio meublé</em> ne reste jamais vacant.</div>
+        <a class="r-link" href="#">Voir le bien <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </article>
+
+      <article class="r-card">
+        <div class="pic"><img class="ph" src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=900&q=80" alt="" /></div>
+        <div class="r-mrow"><span class="loc"><svg viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-10.5a6.5 6.5 0 0 1 13 0C18.5 15.4 12 21 12 21Z"/><circle cx="12" cy="10.5" r="2.4"/></svg> Limoges</span><span class="type">Type : <b>Immeuble</b></span></div>
+        <div class="r-name">Petit immeuble</div>
+        <div class="r-price">196 000 € <span>· 1 241 €/m²</span></div>
+        <div class="r-specs">
+          <span class="r-spec"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zM4 9h5V4M15 20v-5h5"/></svg> 158 m²</span>
+          <span class="r-spec acc"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M16 7h5v5"/></svg> Rendement 8,9 %</span>
+          <span class="r-spec acc"><svg viewBox="0 0 24 24"><path d="M18 6.5A6 6 0 1 0 18 17.5M4 10.5h8M4 13.5h7"/></svg> + 410 €/mois</span>
+        </div>
+        <div class="r-desc">En centre-ville, un <em>immeuble de 4 lots</em> au rendement solide.</div>
+        <a class="r-link" href="#">Voir le bien <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </article>
+
+      <article class="r-card">
+        <div class="pic"><img class="ph" src="https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?auto=format&fit=crop&w=900&q=80" alt="" /></div>
+        <div class="r-mrow"><span class="loc"><svg viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-10.5a6.5 6.5 0 0 1 13 0C18.5 15.4 12 21 12 21Z"/><circle cx="12" cy="10.5" r="2.4"/></svg> Perpignan</span><span class="type">Type : <b>T2</b></span></div>
+        <div class="r-name">T2 à rafraîchir</div>
+        <div class="r-price">74 500 € <span>· 1 817 €/m²</span></div>
+        <div class="r-specs">
+          <span class="r-spec"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zM4 9h5V4M15 20v-5h5"/></svg> 41 m²</span>
+          <span class="r-spec acc"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M16 7h5v5"/></svg> Rendement 8,3 %</span>
+          <span class="r-spec acc"><svg viewBox="0 0 24 24"><path d="M18 6.5A6 6 0 1 0 18 17.5M4 10.5h8M4 13.5h7"/></svg> + 150 €/mois</span>
+        </div>
+        <div class="r-desc">À deux pas des Halles, un <em>T2 à fort potentiel</em> après travaux.</div>
+        <a class="r-link" href="#">Voir le bien <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </article>
+
+      <article class="r-card">
+        <div class="pic"><img class="ph" src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=900&q=80" alt="" /></div>
+        <div class="r-mrow"><span class="loc"><svg viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-10.5a6.5 6.5 0 0 1 13 0C18.5 15.4 12 21 12 21Z"/><circle cx="12" cy="10.5" r="2.4"/></svg> Nîmes</span><span class="type">Type : <b>T3</b></span></div>
+        <div class="r-name">T3 lumineux</div>
+        <div class="r-price">119 000 € <span>· 2 052 €/m²</span></div>
+        <div class="r-specs">
+          <span class="r-spec"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zM4 9h5V4M15 20v-5h5"/></svg> 58 m²</span>
+          <span class="r-spec acc"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M16 7h5v5"/></svg> Rendement 7,8 %</span>
+          <span class="r-spec acc"><svg viewBox="0 0 24 24"><path d="M18 6.5A6 6 0 1 0 18 17.5M4 10.5h8M4 13.5h7"/></svg> + 210 €/mois</span>
+        </div>
+        <div class="r-desc">Dans l'Écusson, un <em>T3 lumineux</em> déjà loué à l'année.</div>
+        <a class="r-link" href="#">Voir le bien <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </article>
+
+    </div>
+    <div class="r-explore">
+      <span class="lbl">Explorer tous les biens</span>
+      <span class="ln"></span>
+      <a class="rnd" href="#"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M10 7h7v7"/></svg></a>
+    </div>
+  </section>
+
+  <section class="sec block" id="methode" style="padding-top:30px">
+    <div class="shead">
+      <div class="lft">
+        <div class="ey">Comment ça marche</div>
+        <h2>De la donnée brute à la <em>bonne affaire</em>, en trois temps.</h2>
+      </div>
+    </div>
+    <div class="feats">
+      <div class="feat"><div class="fn">01</div><h3>On scanne le marché</h3><p>Des milliers d'annonces captées chaque jour partout en France via Apify, dédoublonnées et structurées automatiquement.</p></div>
+      <div class="feat"><div class="fn">02</div><h3>On calcule le rendement réel</h3><p>Loyer de marché, charges, fiscalité et vacance inclus. Le rendement net affiché, pas le brut optimiste du vendeur.</p></div>
+      <div class="feat"><div class="fn">03</div><h3>On vous alerte</h3><p>Vos critères définis, vous êtes prévenu dès qu'un bien dépasse votre seuil de rentabilité — avant qu'il ne parte.</p></div>
+    </div>
+  </section>
+
+  <section class="sec statement">
+    <p>Le bon rendement ne se cherche pas. <em>Il se révèle, donnée après donnée.</em></p>
+  </section>
+
+  <section class="sec cta">
+    <div class="cta-in">
+      <img class="ph" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80" alt="" />
+      <div class="ct">
+        <h2>Votre prochaine acquisition <em>rentable</em> est déjà dans nos données.</h2>
+        <p>Lancez votre recherche en 2 minutes</p>
+        <a class="btn solid lg" href="#">Commencer gratuitement <span class="ic"><svg class="arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M10 7h7v7"/></svg></span></a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="foot">
+    <span>Bestdwell — Index</span>
+    <span>© 2026</span>
+  </div>
+</footer>
+
+</body>
+</html>
